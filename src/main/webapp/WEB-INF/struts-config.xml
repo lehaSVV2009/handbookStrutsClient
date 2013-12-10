@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+    <form-beans>
+
+        <form-bean name="userForm"
+                   type="com.kadet.handbook.client.form.UserForm"/>
+    </form-beans>
+
+    <action-mappings>
+
+
+        <action
+                path="/welcome"
+                type="org.apache.struts.actions.ForwardAction"
+                parameter="/WEB-INF/jsp/welcome.jsp"/>
+
+
+        <action path="/LoginPage"
+                type="org.apache.struts.actions.ForwardAction"
+                parameter="/WEB-INF/jsp/login.jsp"/>
+
+
+        <action path="/Login"
+                type="com.kadet.handbook.client.actions.UserAction"
+                name="userForm"
+                validate="true"
+                input="/WEB-INF/jsp/login.jsp"
+                >
+
+            <forward name="success" path="/WEB-INF/jsp/welcome.jsp"/>
+
+        </action>
+
+
+        <action path="/openChapter"
+                type="com.kadet.handbook.client.actions.OpenChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/main.jsp"/>
+        </action>
+
+
+        <action path="/goToAddChapter"
+                type="org.apache.struts.actions.ForwardAction"
+                parameter="/WEB-INF/jsp/addChapter.jsp"/>
+
+        <action path="/goToEditChapter"
+                type="com.kadet.handbook.client.actions.GoToEditChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/editChapter.jsp"/>
+        </action>
+
+        <action path="/goToRemoveChapter"
+                type="com.kadet.handbook.client.actions.GoToRemoveChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/removeChapter.jsp"/>
+        </action>
+
+        <action path="/addChapter"
+                type="com.kadet.handbook.client.actions.AddChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/addChapter.jsp"/>
+        </action>
+
+        <action path="/editChapter"
+                type="com.kadet.handbook.client.actions.EditChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/editChapter.jsp"/>
+        </action>
+
+        <action path="/removeChapter"
+                type="com.kadet.handbook.client.actions.RemoveChapterAction"
+                >
+            <forward name="success" path="/WEB-INF/jsp/removeChapter.jsp"/>
+        </action>
+
+
+
+    </action-mappings>
+
+    <message-resources parameter="com.kadet.handbook.client.properties.Common"/>
+
+</struts-config>
