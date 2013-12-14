@@ -15,7 +15,7 @@
 
     <dependencies>
 
-        <!--JUNIT-->
+        <!-- JUNIT -->
 
         <dependency>
             <groupId>junit</groupId>
@@ -24,7 +24,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!--STRUTS-->
+        <!-- STRUTS -->
 
         <dependency>
             <groupId>org.apache.struts</groupId>
@@ -44,12 +44,21 @@
             <version>${struts.version}</version>
         </dependency>
 
-        <!--SERVLET-API-->
+        <!-- SERVLET-API -->
 
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
+        </dependency>
+
+
+        <!-- JERSEY CORE-->
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.0</version>
         </dependency>
 
     </dependencies>
