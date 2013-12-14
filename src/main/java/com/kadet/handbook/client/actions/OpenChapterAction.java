@@ -1,5 +1,6 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.form.OpenChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.client.util.Messages;
@@ -25,11 +26,13 @@ public class OpenChapterAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        OpenChapterForm openChapterForm = (OpenChapterForm) form;
         request.setCharacterEncoding("UTF-8");
         Chapter chapter;
         try {
 
-            String chapterIdString = request.getParameter("chapterId");
+            String chapterIdString = openChapterForm.getChapterId();
+//            String chapterIdString = request.getParameter("chapterId");
             if (chapterIdString == null) {
                 chapter = createStandardChapter();
             } else {

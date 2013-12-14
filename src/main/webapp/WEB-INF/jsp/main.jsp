@@ -1,3 +1,5 @@
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ page import="com.kadet.handbook.client.util.Messages" %>
 <%@ page import="com.kadet.handbook.entity.Chapter" %>
 <%@ page import="java.util.List" %>
@@ -30,22 +32,27 @@
 
     <div class="span3 well">
 
-        <form action="/openChapter" method="GET" role="form">
+        <html:form action="/openChapter" method="GET">
+
             <%List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");%>
             <%if (chapters != null) {%>
 
-            <select name="chapterId" multiple class="form-control">
+            <html:select property="chapterId">
                 <%for (Chapter chapter : chapters) {%>
-                <option value="<%=chapter.getId()%>">
+                <html:option value="<%=chapter.getId().toString()%>">
                     <%=chapter.getTitle()%>
-                </option>
+                </html:option>
                 <%}%>
-            </select>
+            </html:select>
 
             <%}%>
 
-            <input type="submit" value="<%=Messages.OPEN_CHAPTER_BUTTON_TEXT%>" class="btn btn-primary"/>
-        </form>
+            <br/>
+            <html:submit>
+                <bean:message key="label.open_chapter.submit"/>
+            </html:submit>
+
+        </html:form>
 
     </div>
 

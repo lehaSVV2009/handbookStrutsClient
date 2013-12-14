@@ -1,3 +1,5 @@
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ page import="com.kadet.handbook.client.util.Messages" %>
 <%@ page import="com.kadet.handbook.entity.Chapter" %>
 <%@ page import="java.util.List" %>
@@ -12,10 +14,10 @@
 <html>
 <head>
     <title></title>
-<%--
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="../../web-resources/bootstrap/css/bootstrap.min.css"/>
---%>
+    <%--
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="../../web-resources/bootstrap/css/bootstrap.min.css"/>
+    --%>
 
 </head>
 <body>
@@ -27,6 +29,37 @@
     </div>
 </div>
 <%}%>
+
+<div class="row">
+
+    <div class="span6 offset4 well">
+
+        <html:form method="POST" action="/removeChapter">
+
+            <%List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");%>
+            <%if (chapters != null) {%>
+
+            <html:select property="chapterId">
+                <%for (Chapter chapter : chapters) {%>
+                <html:option value="<%=chapter.getId().toString()%>">
+                    <%=chapter.getTitle()%>
+                </html:option>
+                <%}%>
+            </html:select>
+
+            <%}%>
+
+            <html:submit>
+                <bean:message key="label.remove_chapter.submit"/>
+            </html:submit>
+
+        </html:form>
+    </div>
+
+</div>
+
+
+<%--
 
 <div class="row">
 
@@ -50,6 +83,7 @@
     </div>
 
 </div>
+--%>
 
 <div class="row">
 

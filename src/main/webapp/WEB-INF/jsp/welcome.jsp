@@ -18,7 +18,5 @@
 
 
 
-<%--Welcome <bean:write name="userForm" property="username" />--%>
-
 </body>
 </html>

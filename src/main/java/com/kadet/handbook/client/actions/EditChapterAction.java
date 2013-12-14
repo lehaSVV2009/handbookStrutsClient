@@ -1,5 +1,6 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.form.EditChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.client.util.DataStrings;
@@ -26,14 +27,16 @@ public class EditChapterAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        EditChapterForm editChapterForm = (EditChapterForm) form;
         request.setCharacterEncoding("UTF-8");
-        String idString = request.getParameter("editChapter.id");
+        String idString = editChapterForm.getChapterId();
         if (idString == null) {
             request.setAttribute("chapters", restService.findAll());
             return mapping.findForward("success");
         }
-        String title = request.getParameter("editChapter.title");
-        String text = request.getParameter("editChapter.text");
+        String title = editChapterForm.getTitle();
+        String text = editChapterForm.getText();
         Integer id = Integer.parseInt(idString);
         Chapter chapter = new Chapter();
         chapter.setId(id);

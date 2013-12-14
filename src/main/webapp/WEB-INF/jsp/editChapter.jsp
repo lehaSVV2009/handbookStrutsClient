@@ -1,3 +1,5 @@
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ page import="com.kadet.handbook.entity.Chapter" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kadet.handbook.client.util.Messages" %>
@@ -30,26 +32,37 @@
 <div class="row">
 
     <div class="span6 offset4 well">
-        <form action="/editChapter" method="POST" role="form">
+
+        <html:form action="/editChapter" method="POST">
             <%List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");%>
             <%if (chapters != null) {%>
 
-            <select name="editChapter.id" multiple class="form-control">
+            <html:select property="chapterId">
                 <%for (Chapter chapter : chapters) {%>
-                <option value="<%=chapter.getId()%>">
+                <html:option value="<%=chapter.getId().toString()%>">
                     <%=chapter.getTitle()%>
-                </option>
+                </html:option>
                 <%}%>
-            </select>
-
+            </html:select>
             <%}%>
+
             <br>
-            <input type="text" name="editChapter.title" class="input-large" placeholder="Название главы"/>
-            <br>
-            <textarea name="editChapter.text" class="input-large" rows="20" placeholder="Текст"></textarea>
-            <br>
-            <input type="submit" value="<%=Messages.EDIT_CHAPTER_BUTTON_TEXT%>" class="btn btn-primary"/>
-        </form>
+            <html:text property="title"/>
+
+            <br/>
+            <html:textarea property="text"/>
+
+            <br/>
+            <html:submit>
+                <bean:message key="label.edit_chapter.submit"></bean:message>
+            </html:submit>
+
+            <html:reset>
+                <bean:message key="label.edit_chapter.reset"></bean:message>
+            </html:reset>
+
+        </html:form>
+
     </div>
 
 </div>

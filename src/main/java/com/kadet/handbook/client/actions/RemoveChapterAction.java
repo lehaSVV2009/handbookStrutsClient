@@ -1,5 +1,6 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.form.RemoveChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.entity.Chapter;
@@ -23,8 +24,12 @@ public class RemoveChapterAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         request.setCharacterEncoding("UTF-8");
-        String idString = request.getParameter("removeChapter.id");
+
+        RemoveChapterForm removeChapterForm = (RemoveChapterForm) form;
+//        String idString = request.getParameter("removeChapter.id");
+        String idString = removeChapterForm.getChapterId();
         if (idString == null) {
             request.setAttribute("chapters", restService.findAll());
             return mapping.findForward("success");

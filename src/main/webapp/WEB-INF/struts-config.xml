@@ -7,12 +7,35 @@
 
     <form-beans>
 
-        <form-bean name="userForm"
-                   type="com.kadet.handbook.client.form.UserForm"/>
+        <!-- FORM FOR REMOVE CHAPTER -->
+
+        <form-bean name="removeChapterForm"
+                   type="com.kadet.handbook.client.form.RemoveChapterForm"/>
+
+
+        <!-- FORM FOR ADD NEW CHAPTER -->
+
+        <form-bean name="addChapterForm"
+                   type="com.kadet.handbook.client.form.AddChapterForm"/>
+
+
+        <!-- FORM FOR EDIT CHAPTER -->
+
+        <form-bean name="editChapterForm"
+                   type="com.kadet.handbook.client.form.EditChapterForm"/>
+
+
+        <!-- FORM FOR OPEN CHAPTER -->
+
+        <form-bean name="openChapterForm"
+                   type="com.kadet.handbook.client.form.OpenChapterForm"/>
+
     </form-beans>
 
     <action-mappings>
 
+
+        <!-- ACTION ON START APPLICATION -->
 
         <action
                 path="/welcome"
@@ -20,33 +43,24 @@
                 parameter="/WEB-INF/jsp/welcome.jsp"/>
 
 
-        <action path="/LoginPage"
-                type="org.apache.struts.actions.ForwardAction"
-                parameter="/WEB-INF/jsp/login.jsp"/>
-
-
-        <action path="/Login"
-                type="com.kadet.handbook.client.actions.UserAction"
-                name="userForm"
-                validate="true"
-                input="/WEB-INF/jsp/login.jsp"
-                >
-
-            <forward name="success" path="/WEB-INF/jsp/welcome.jsp"/>
-
-        </action>
-
+        <!-- ACTION ON OPEN CHAPTER -->
 
         <action path="/openChapter"
                 type="com.kadet.handbook.client.actions.OpenChapterAction"
+                name="openChapterForm"
                 >
             <forward name="success" path="/WEB-INF/jsp/main.jsp"/>
         </action>
 
 
+        <!-- ACTION ON GO TO ADD CHAPTER PAGE -->
+
         <action path="/goToAddChapter"
                 type="org.apache.struts.actions.ForwardAction"
                 parameter="/WEB-INF/jsp/addChapter.jsp"/>
+
+
+        <!-- ACTION ON GO TO EDIT CHAPTER PAGE -->
 
         <action path="/goToEditChapter"
                 type="com.kadet.handbook.client.actions.GoToEditChapterAction"
@@ -54,33 +68,49 @@
             <forward name="success" path="/WEB-INF/jsp/editChapter.jsp"/>
         </action>
 
+
+        <!-- ACTION ON GO TO REMOVE CHAPTER PAGE -->
+
         <action path="/goToRemoveChapter"
                 type="com.kadet.handbook.client.actions.GoToRemoveChapterAction"
                 >
             <forward name="success" path="/WEB-INF/jsp/removeChapter.jsp"/>
         </action>
 
+
+        <!-- ACTION ON ADD NEW CHAPTER -->
+
         <action path="/addChapter"
                 type="com.kadet.handbook.client.actions.AddChapterAction"
+                name="addChapterForm"
                 >
             <forward name="success" path="/WEB-INF/jsp/addChapter.jsp"/>
         </action>
 
+
+        <!-- ACTION ON EDIT CHAPTER -->
+
         <action path="/editChapter"
                 type="com.kadet.handbook.client.actions.EditChapterAction"
+                name="editChapterForm"
                 >
             <forward name="success" path="/WEB-INF/jsp/editChapter.jsp"/>
         </action>
 
+
+        <!-- ACTION ON REMOVE CHAPTER -->
+
         <action path="/removeChapter"
                 type="com.kadet.handbook.client.actions.RemoveChapterAction"
+                name="removeChapterForm"
                 >
             <forward name="success" path="/WEB-INF/jsp/removeChapter.jsp"/>
         </action>
 
-
-
     </action-mappings>
+
+
+    <!-- PROPERTIES FILE WITH LABEL STRINGS -->
 
     <message-resources parameter="com.kadet.handbook.client.properties.Common"/>
 

@@ -1,3 +1,5 @@
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ page import="com.kadet.handbook.client.util.Messages" %>
 <%--
   Created by IntelliJ IDEA.
@@ -10,11 +12,11 @@
 <html>
 <head>
     <title></title>
-    <%--<link rel="stylesheet" type="text/css" media="screen"
-          href="../../web-resources/bootstrap/css/bootstrap.min.css"/>
---%>
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="web-resources/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
+
 
 
 <%if (request.getAttribute("addSuccess") != null && (Boolean) request.getAttribute("addSuccess")) { %>
@@ -28,13 +30,24 @@
 <div class="row">
 
     <div class="span6 offset4 well">
-        <form action="/addChapter" method="POST" role="form">
-            <input type="text" name="addChapter.title" class="input-large" placeholder="Название главы"/>
-            <br>
-            <textarea name="addChapter.text" class="input-large" rows="20" placeholder="Текст"></textarea>
-            <br>
-            <input type="submit" value="<%=Messages.ADD_CHAPTER_BUTTON_TEXT%>" class="btn btn-primary"/>
-        </form>
+
+        <html:form method="POST" action="/addChapter">
+
+            <html:text property="title"/>
+            <br/>
+            <html:textarea property="text" />
+
+            <br/>
+            <html:submit>
+                <bean:message key="label.add_chapter.submit"/>
+            </html:submit>
+
+            <html:reset>
+                <bean:message key="label.add_chapter.reset"/>
+            </html:reset>
+
+        </html:form>
+
     </div>
 
 </div>

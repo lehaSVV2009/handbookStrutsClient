@@ -1,5 +1,7 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.form.AddChapterForm;
+import com.kadet.handbook.client.form.RemoveChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.client.util.TextValidator;
@@ -26,8 +28,13 @@ public class AddChapterAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
-        String title = request.getParameter("addChapter.title");
+        AddChapterForm addChapterForm = (AddChapterForm) form;
+
+        /*String title = request.getParameter("addChapter.title");
         String text = request.getParameter("addChapter.text");
+        */
+        String title = addChapterForm.getTitle();
+        String text = addChapterForm.getText();
         if (!TextValidator.badText(title)
                 && !TextValidator.badText(text)) {
             Chapter chapter = new Chapter(
