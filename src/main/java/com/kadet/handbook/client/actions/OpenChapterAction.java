@@ -33,7 +33,7 @@ public class OpenChapterAction extends Action {
             if (chapterIdString == null) {
                 chapter = createStandardChapter();
             } else {
-                Long chapterId = Long.parseLong(chapterIdString);
+                Integer chapterId = Integer.parseInt(chapterIdString);
                 chapter = restService.findById(chapterId);
                 if (chapter == null) {
                     chapter = createStandardChapter();

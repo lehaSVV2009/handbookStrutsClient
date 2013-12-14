@@ -34,7 +34,7 @@ public class EditChapterAction extends Action {
         }
         String title = request.getParameter("editChapter.title");
         String text = request.getParameter("editChapter.text");
-        Long id = Long.parseLong(idString);
+        Integer id = Integer.parseInt(idString);
         Chapter chapter = new Chapter();
         chapter.setId(id);
         chapter.setTitle(title);

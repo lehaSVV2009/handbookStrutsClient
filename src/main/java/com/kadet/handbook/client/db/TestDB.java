@@ -28,16 +28,16 @@ public class TestDB {
 
     private void generateChapters () {
         chapters.add(
-                createChapter("title1", "text1", 1L));
+                createChapter("title1", "text1", 1));
         chapters.add(
-                createChapter("title2", "text2", 2L));
+                createChapter("title2", "text2", 2));
         chapters.add(
-                createChapter("title3", "text3", 3L));
+                createChapter("title3", "text3", 3));
         chapters.add(
-                createChapter("title4", "text4", 4L));
+                createChapter("title4", "text4", 4));
     }
 
-    private Chapter createChapter (String title, String text, Long id) {
+    private Chapter createChapter (String title, String text, Integer id) {
         Chapter chapter
                 = new Chapter(title, text);
         chapter.setId(id);
@@ -55,13 +55,19 @@ public class TestDB {
     }
 
     
-    public boolean delete(Long id) {
-        return chapters.remove(id - 1);
+    public boolean delete(Integer id) {
+        chapters.remove(id);
+        return true;
     }
 
     
-    public Chapter findById(Long id) {
-        return chapters.get((int)(id - 1));
+    public Chapter findById(Integer id) {
+        for (Chapter chapter : chapters) {
+            if (chapter.getId() == id) {
+                return chapter;
+            }
+        }
+        return null;
     }
     
 }

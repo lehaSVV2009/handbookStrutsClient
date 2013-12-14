@@ -29,7 +29,7 @@ public class RemoveChapterAction extends Action {
             request.setAttribute("chapters", restService.findAll());
             return mapping.findForward("success");
         }
-        Long id = Long.parseLong(idString);
+        Integer id = Integer.parseInt(idString);
         boolean success = restService.delete(id);
         if (success) {
             request.setAttribute("removeSuccess", new Boolean(true));

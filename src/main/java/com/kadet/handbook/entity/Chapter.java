@@ -13,7 +13,7 @@ import java.io.Serializable;
 @XmlRootElement
 public class Chapter implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String title;
     private String text;
 
@@ -25,16 +25,11 @@ public class Chapter implements Serializable {
         this.text = text;
     }
 
-    public Chapter(Long id, String title, String text) {
-        this(title, text);
-        this.id = id;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

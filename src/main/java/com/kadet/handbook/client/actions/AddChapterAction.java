@@ -31,10 +31,10 @@ public class AddChapterAction extends Action {
         if (!TextValidator.badText(title)
                 && !TextValidator.badText(text)) {
             Chapter chapter = new Chapter(
-                    new Random().nextLong(),
                     title,
                     text
             );
+            chapter.setId(new Random().nextInt(10000));
             restService.saveOrUpdate(chapter);
             request.setAttribute("addSuccess", new Boolean(true));
         }

@@ -14,8 +14,8 @@ public interface RestService {
 
     public void saveOrUpdate(Chapter chapter);
     public List<Chapter> findAll();
-    public boolean delete(Long id);
-    public Chapter findById(Long id);
+    public boolean delete(Integer id);
+    public Chapter findById(Integer id);
 
 
 }
