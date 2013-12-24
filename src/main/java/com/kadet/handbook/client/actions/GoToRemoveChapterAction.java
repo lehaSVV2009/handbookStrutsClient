@@ -1,5 +1,6 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.bussinessDelegate.BusinessDelegate;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.client.util.DataStrings;
@@ -19,12 +20,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GoToRemoveChapterAction extends Action {
 
-    private RestService restService = new RestServiceImpl();
+    private BusinessDelegate businessDelegate = BusinessDelegate.getInstance();
+
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
-        request.setAttribute("chapters", restService.findAll());
+        request.setAttribute("chapters", businessDelegate.findAll());
         return mapping.findForward("success");
     }
 }

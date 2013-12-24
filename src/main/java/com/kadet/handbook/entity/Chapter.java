@@ -11,7 +11,7 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 @XmlRootElement
-public class Chapter implements Serializable {
+public class Chapter implements Serializable, Entity<Integer> {
 
     private Integer id;
     private String title;

@@ -12,10 +12,11 @@ import java.util.List;
  */
 public interface RestService {
 
-    public void saveOrUpdate(Chapter chapter);
-    public List<Chapter> findAll();
-    public boolean delete(Integer id);
-    public Chapter findById(Integer id);
+    public void save (Chapter chapter);
+    public void update (Chapter chapter);
+    public List<Chapter> findAll ();
+    public boolean delete (Integer id);
+    public Chapter findById (Integer id);
 
 
 }

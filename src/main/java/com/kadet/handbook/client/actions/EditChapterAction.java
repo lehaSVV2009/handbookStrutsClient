@@ -1,10 +1,9 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.bussinessDelegate.BusinessDelegate;
 import com.kadet.handbook.client.form.EditChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
-import com.kadet.handbook.client.util.DataStrings;
-import com.kadet.handbook.client.util.TextValidator;
 import com.kadet.handbook.entity.Chapter;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -13,7 +12,6 @@ import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Random;
 
 /**
  * Date: 10.12.13
@@ -23,16 +21,17 @@ import java.util.Random;
  */
 public class EditChapterAction extends Action {
 
-    private RestService restService = new RestServiceImpl();
+    private BusinessDelegate businessDelegate = BusinessDelegate.getInstance();
+
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        EditChapterForm editChapterForm = (EditChapterForm) form;
         request.setCharacterEncoding("UTF-8");
+        EditChapterForm editChapterForm = (EditChapterForm) form;
         String idString = editChapterForm.getChapterId();
         if (idString == null) {
-            request.setAttribute("chapters", restService.findAll());
+            request.setAttribute("chapters", businessDelegate.findAll());
             return mapping.findForward("success");
         }
         String title = editChapterForm.getTitle();
@@ -42,9 +41,9 @@ public class EditChapterAction extends Action {
         chapter.setId(id);
         chapter.setTitle(title);
         chapter.setText(text);
-        restService.saveOrUpdate(chapter);
+        businessDelegate.update(chapter);
         request.setAttribute("editSuccess", new Boolean(true));
-        request.setAttribute("chapters", restService.findAll());
+        request.setAttribute("chapters", businessDelegate.findAll());
         return mapping.findForward("success");
     }
 

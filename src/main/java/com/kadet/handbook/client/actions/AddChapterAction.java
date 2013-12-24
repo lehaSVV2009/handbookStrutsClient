@@ -1,7 +1,7 @@
 package com.kadet.handbook.client.actions;
 
+import com.kadet.handbook.client.bussinessDelegate.BusinessDelegate;
 import com.kadet.handbook.client.form.AddChapterForm;
-import com.kadet.handbook.client.form.RemoveChapterForm;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.client.service.impl.RestServiceImpl;
 import com.kadet.handbook.client.util.TextValidator;
@@ -23,16 +23,14 @@ import java.util.Random;
  */
 public class AddChapterAction extends Action {
 
-    private RestService restService = new RestServiceImpl();
+    private BusinessDelegate businessDelegate = BusinessDelegate.getInstance();
+
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
         AddChapterForm addChapterForm = (AddChapterForm) form;
 
-        /*String title = request.getParameter("addChapter.title");
-        String text = request.getParameter("addChapter.text");
-        */
         String title = addChapterForm.getTitle();
         String text = addChapterForm.getText();
         if (!TextValidator.badText(title)
@@ -42,7 +40,7 @@ public class AddChapterAction extends Action {
                     text
             );
             chapter.setId(new Random().nextInt(10000));
-            restService.saveOrUpdate(chapter);
+            businessDelegate.save(chapter);
             request.setAttribute("addSuccess", new Boolean(true));
         }
         return mapping.findForward("success");

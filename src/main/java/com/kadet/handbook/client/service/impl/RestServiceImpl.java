@@ -1,6 +1,5 @@
 package com.kadet.handbook.client.service.impl;
 
-import com.kadet.handbook.client.db.TestDB;
 import com.kadet.handbook.client.service.RestService;
 import com.kadet.handbook.entity.Chapter;
 import com.kadet.handbook.entity.ChapterWrapper;
@@ -20,8 +19,6 @@ import java.util.List;
  */
 public class RestServiceImpl implements RestService {
 
-    private TestDB testDB = TestDB.getInstance();
-
     private final static String REST_ROOT_URL = "http://localhost:8080/handbookSpringServer-1.0.0-SNAPSHOT-D/";
     private final Client client = ClientBuilder.newClient();
 
@@ -31,7 +28,18 @@ public class RestServiceImpl implements RestService {
 
 
     @Override
-    public void saveOrUpdate(Chapter chapter) {
+    public void save(Chapter chapter) {
+        Entity<Chapter> entity
+                = Entity.entity(chapter, MediaType.APPLICATION_XML);
+        Response response = client.target(REST_ROOT_URL).
+                path(REST_SERVICE_PATH).
+                path(CHAPTER_PATH).
+                request().
+                post(entity);
+    }
+
+    @Override
+    public void update(Chapter chapter) {
         Entity<Chapter> entity
                 = Entity.entity(chapter, MediaType.APPLICATION_XML);
         Response response = client.target(REST_ROOT_URL).
